@@ -1,4 +1,4 @@
-mono-aspnetvnext Docker image
+mono-aspnetvnext Docker Image
 =============================
 
 The image contains everything needed to play with ASP.NET vNext projects on Mono. This fork uses the mono-3.6.0-branch to get the HelloMVC app working.
