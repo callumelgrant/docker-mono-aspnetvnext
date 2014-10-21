@@ -19,7 +19,7 @@ RUN     curl https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh 
         /bin/bash -c "source ~/.kre/kvm/kvm.sh && kvm upgrade; echo ExitCode=$?"
 
 RUN     git clone https://github.com/aspnet/Home.git ~/Home
-RUN     /bin/bash -c "cd ~/Home && samples ~/.kre/kvm/kvm.sh && kpm restore"
+RUN     /bin/bash -c "cd ~/Home && source ~/.kre/kvm/kvm.sh && kpm restore"
 
 
 
