@@ -1,17 +1,15 @@
 FROM    ubuntu:latest
-MAINTAINER      Zachary Jones <prozachj@gmail.com>
+MAINTAINER      Callum Grant <callum@callumgrant.co.nz>
 
 RUN     apt-get -qq update
 
-RUN     apt-get -qqy install libtool autoconf g++ gettext make git unzip && \
-        git clone -b mono-3.6.0-branch https://github.com/mono/mono /tmp/mono && \
-        cd /tmp/mono && \
-        ./autogen.sh --prefix=/usr && \
-        make get-monolite-latest && \
-        make && \
-        make install && \
-        cd / && \
-        rm -rf /tmp/mono
+RUN     apt-get -qqy install git unzip && \
+        wget http://download.mono-project.com/repo/xamarin.gpg && \
+		apt-key add xamarin.gpg && \
+		echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee --append /etc/apt/sources.list.d/mono-xamarin.list && \
+		apt-get update && \
+		apt-get install mono-complete && \
+		rm -rf /var/lib/apt/lists/*
 RUN     mono --version
 
 ENV     HOME  /root
@@ -20,8 +18,8 @@ RUN     curl https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh 
         sh /root/kvminstall.sh && \
         /bin/bash -c "source ~/.kre/kvm/kvm.sh && kvm upgrade; echo ExitCode=$?"
 
-RUN     git clone https://github.com/davidfowl/HelloWorldVNext.git ~/HelloWorldVNext
-RUN     /bin/bash -c "cd ~/HelloWorldVNext && source ~/.kre/kvm/kvm.sh && kpm restore"
+RUN     git clone https://github.com/aspnet/Home.git ~/Home
+RUN     /bin/bash -c "cd ~/Home && samples ~/.kre/kvm/kvm.sh && kpm restore"
 
 
 
