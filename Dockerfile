@@ -8,7 +8,7 @@ RUN     apt-get -qqy install git unzip wget && \
 		apt-key add xamarin.gpg && \
 		echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee --append /etc/apt/sources.list.d/mono-xamarin.list && \
 		apt-get update && \
-		apt-get install mono-complete && \
+		apt-get -qqy install mono-complete && \
 		rm -rf /var/lib/apt/lists/*
 RUN     mono --version
 
