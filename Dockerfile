@@ -3,7 +3,7 @@ MAINTAINER      Callum Grant <callum@callumgrant.co.nz>
 
 RUN     apt-get -qq update
 
-RUN     apt-get -qqy install git unzip && \
+RUN     apt-get -qqy install git unzip wget && \
         wget http://download.mono-project.com/repo/xamarin.gpg && \
 		apt-key add xamarin.gpg && \
 		echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee --append /etc/apt/sources.list.d/mono-xamarin.list && \
